@@ -234,38 +234,42 @@ class ProductController extends Controller
     
 
 public function search_product(Request $request)
-    {
-        $comment = Comment::orderby('id', 'desc')->get();
-        $reply = Reply::all();
-        $filters = Filters::all();
-    
-        $cart_count = 0;
-    
-        if (Auth::id()) {
-            $user_id = Auth::user()->id;
-            $cart_count = Cart::where('user_id', '=', $user_id)->count();
-        }
-    
-        $search_text = $request->search;
+{
+    $comment = Comment::orderby('id', 'desc')->get();
+    $reply = Reply::all();
+    $filters = Filters::all();
 
-        $filter_id = $request->get('filter_id');
+    $cart_count = 0;
 
-        // Si se proporcionó un ID de filtro, utilícelo para obtener el filtro correspondiente.
-        // Si no, busque el filtro por la palabra clave ingresada.
-        if ($filter_id) {
-            $filter = Filters::where('filter_id', $filter_id)->first();
-        } else {
-        // Busca el filtro que coincida con la palabra clave ingresada
-        $filter = Filters::where('filter_name', 'LIKE', '%' . $search_text . '%')->first();
-        }
+    if (Auth::id()) {
+        $user_id = Auth::user()->id;
+        $cart_count = Cart::where('user_id', '=', $user_id)->count();
+    }
 
-        if ($filter) {
-            // Inicializa la consulta base
-            $query = Product::query();
-    
-            // Aplica cada criterio de las características asociadas al filtro encontrado
+    $search_text = $request->search;
+
+    $filter_ids = $request->input('filter_ids');
+  
+
+    // Si se proporcionaron ID de filtros, utilícelos para obtener los filtros correspondientes.
+    // Si no, busque el filtro por la palabra clave ingresada.
+    if ($filter_ids) {
+        $selected_filters = Filters::whereIn('filter_id', $filter_ids)->get();
+    } else {
+        // Busca los filtros que coincidan con la palabra clave ingresada
+        $found_filter = Filters::where('filter_name', 'LIKE', '%' . $search_text . '%')->first();
+
+        // Asegúrate de que $selected_filters sea una colección, incluso si solo contiene un elemento
+        $selected_filters = $found_filter ? collect([$found_filter]) : collect([]);
+    }
+
+    if (count($selected_filters) > 0) {
+        // Inicializa la consulta base
+        $query = Product::query();
+
+        // Aplica cada criterio de las características asociadas a los filtros encontrados
+        foreach ($selected_filters as $filter) {
             $filter->load('characteristics');
-
             foreach ($filter->characteristics as $characteristic) {
                 $query->whereHas('characteristics', function ($q) use ($characteristic) {
                     $q->where('characteristics.characteristics_id', $characteristic->pivot->characteristic_id)
@@ -277,19 +281,20 @@ public function search_product(Request $request)
             if ($filter->min_price !== null && $filter->max_price !== null) {
                 $query->whereBetween('price', [$filter->min_price, $filter->max_price]);
             }
-    
-            $product = $query->paginate(10);
-        } else {
-            // Si no se encuentra ningún filtro que coincida, realiza la búsqueda existente
-            $product = Product::whereHas('model', function ($query) use ($search_text) {
-                $query->where('model_name', 'LIKE', "%$search_text%")->orWhereHas('brand', function ($query) use ($search_text) {
-                    $query->where('brand_name', 'LIKE', "%$search_text%");
-                });
-            })->paginate(10);
         }
-    
-        return view('home.all_product', compact('product', 'comment', 'reply', 'cart_count', 'filters'));
+
+        $product = $query->paginate(10);
+    } else {
+        // Si no se encuentra ningún filtro que coincida, realiza la búsqueda existente
+        $product = Product::whereHas('model', function ($query) use ($search_text) {
+            $query->where('model_name', 'LIKE', "%$search_text%")->orWhereHas('brand', function ($query) use ($search_text) {
+                $query->where('brand_name', 'LIKE', "%$search_text%");
+            });
+        })->paginate(10);
     }
+
+    return view('home.all_product', compact('product', 'comment', 'reply', 'cart_count', 'filters'));
+}
 
  
 

@@ -5,28 +5,22 @@
 
 
                <div>
-
-                  <div>
-                     <select id="filter-select" name="filter_id">
-                        <option value="">Select a filter</option>
-                        @foreach($filters as $filter)
-                            <option value="{{$filter->filter_id}}">{{$filter->filter_name}}</option>
-                        @endforeach
-                    </select>
-
-                  </div>
-               
-
-              <form action="{{url('search_product')}}" method="GET" onsubmit="addSelectedFiltersToForm(this)">
-                  @csrf
-                  <input class="search_box" type="text" name="search" placeholder="Search for Something">
-                  <input type="submit" value="search">
-              </form>
-                 
-
-               </div>
-               
-            </div>
+                  <form action="{{url('search_product')}}" method="GET">
+                     @csrf
+                     <div class="form-group">
+                         <label>Select filters</label>
+                         <div class="btn-group-toggle" data-toggle="buttons">
+                             @foreach($filters as $filter)
+                                 <label class="btn btn-outline-primary" style="font-size: 15px">
+                                     <input type="checkbox" name="filter_ids[]" value="{{$filter->filter_id}}" autocomplete="off"> {{$filter->filter_name}}
+                                 </label>
+                             @endforeach
+                         </div>
+                     </div>
+                     <input class="search_box" type="text" name="search" placeholder="Search for Something">
+                     <input type="submit" value="search">
+                 </form>
+              </div>
 
             
             <div class="row">
@@ -34,7 +28,7 @@
                @foreach($product as $products)
 
                <div class="col-sm-6 col-md-4 col-lg-4">
-                  <div class="box" style="text-align: center">
+                  <div class="box product-card" style="text-align: center">
 
                      <div class="option_container">
                         <div class="options">
@@ -107,19 +101,16 @@
             </div>
 
                @endforeach
+ </div>
 
 
-               
-            
-         </div>
-
-         <div style="padding-top: 40px;">
-
-            {!!$product->withQueryString()->links('pagination::bootstrap-5')!!}
-
-            </div>
 
       </section> 
+      <div style="margin:40px;">
+
+         {!!$product->withQueryString()->links('pagination::bootstrap-5')!!}
+
+         </div>
 
 
       <script>
