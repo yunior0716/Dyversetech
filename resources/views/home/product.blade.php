@@ -106,9 +106,9 @@
                      
          </div>
 
-         <div style="padding-top: 40px;">
+         {{-- <div style="padding-top: 40px;">
 
             {!!$product->withQueryString()->links('pagination::bootstrap-5')!!}
 
-            </div>
+            </div> --}}
       </section> 

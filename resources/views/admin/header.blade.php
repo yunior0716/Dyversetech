@@ -38,7 +38,7 @@
                                <form method="POST" action="{{ route('logout') }}">
                           @csrf
                          
-                              <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                              <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                                           this.closest('form').submit(); " role="button">
                                   
 

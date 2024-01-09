@@ -22,11 +22,11 @@
          <!-- end slider section -->
       </div> 
      
-      
+      <section id="product-section">
       <!-- product section -->
       @include('home.product')
       <!-- end product section -->
-
+      </section>
 
 
        <!-- why section -->
@@ -85,7 +85,7 @@
       </script>
 
 
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function(event) { 
             var scrollpos = localStorage.getItem('scrollpos');
             if (scrollpos) window.scrollTo(0, scrollpos);
@@ -94,7 +94,7 @@
         window.onbeforeunload = function(e) {
             localStorage.setItem('scrollpos', window.scrollY);
         };
-    </script>
+    </script> --}}
 
            <!-- jQery -->
       <script src="{{asset('home/js/jquery-3.4.1.min.js')}}"></script>

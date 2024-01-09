@@ -59,7 +59,7 @@
 
           	<div class="div_center">
           		
-          		<h2 class="h2_font">Add Operator</h2>
+          		<h2 class="h2_font white">Add Operator</h2>
 
           		<form action="{{url('/add_operator')}}" method="POST">
 

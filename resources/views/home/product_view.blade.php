@@ -1,26 +1,45 @@
+<style>
+.btn-outline-custom {
+    color: black;
+    border-color: #3d5dee;
+}
+
+.btn-outline-custom:hover,
+.btn-outline-custom:focus,
+.btn-outline-custom:active,
+.btn-outline-custom.active {
+    background-color: #3d5dee;
+    color: white;
+}
+</style>
+
 <section class="product_section layout_padding">
          <div class="container">
             <div class="heading_container heading_center">
+
               
 
 
                <div>
                   <form action="{{url('search_product')}}" method="GET">
                      @csrf
-                     <div class="form-group">
-                         <label>Select filters</label>
-                         <div class="btn-group-toggle" data-toggle="buttons">
-                             @foreach($filters as $filter)
-                                 <label class="btn btn-outline-primary" style="font-size: 15px">
-                                     <input type="checkbox" name="filter_ids[]" value="{{$filter->filter_id}}" autocomplete="off"> {{$filter->filter_name}}
+
+                     
+                     {{-- <div class="form-group" style="border: 1px solid #ccc; padding: 20px; border-radius: 5px;">
+                        <label>Select filters</label>
+                        <div class="btn-group-toggle d-flex flex-wrap justify-content-start" data-toggle="buttons" style="gap: 10px;">
+                           @foreach($filters as $filter)
+                                 <label class="btn btn-outline-custom" style="font-size: 15px">
+                                    <input type="checkbox" name="filter_ids[]" value="{{$filter->filter_id}}" autocomplete="off"> {{$filter->filter_name}}
                                  </label>
-                             @endforeach
-                         </div>
-                     </div>
+                           @endforeach
+                        </div>
+                     </div> --}}
+
                      <input class="search_box" type="text" name="search" placeholder="Search for Something">
-                     <input type="submit" value="search">
-                 </form>
-              </div>
+                     <input type="submit" value="search"  {{-- onclick="if (this.form.search.value === '') return false; " --}}>
+                  </form>
+               </div>
 
             
             <div class="row">

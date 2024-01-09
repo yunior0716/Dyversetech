@@ -7,9 +7,9 @@
                         <a href="{{url('/')}}"><img width="210"  src="{{asset('images/logo.png')}}" alt="#" /></a>
                       </div>
                       <div class="information_f">
-                        <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>
-                        <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
-                        <p><strong>EMAIL:</strong> yourmain@gmail.com</p>
+                        <p><strong>ADDRESS:</strong> 259, Street New York City, USA</p>
+                        <p><strong>TELEPHONE:</strong> +1 829 123 4567</p>
+                        <p><strong>EMAIL:</strong> info@dyversetech.com</p>
                       </div>
                    </div>
                </div>
@@ -22,10 +22,7 @@
                         <h3>Menu</h3>
                         <ul>
                            <li><a href="#">Home</a></li>
-                           <li><a href="#">About</a></li>
-                           <li><a href="#">Services</a></li>
                            <li><a href="#">Testimonial</a></li>
-                           <li><a href="#">Blog</a></li>
                            <li><a href="#">Contact</a></li>
                         </ul>
                      </div>
@@ -35,11 +32,8 @@
                         <h3>Account</h3>
                         <ul>
                            <li><a href="#">Account</a></li>
-                           <li><a href="#">Checkout</a></li>
-                           <li><a href="#">Login</a></li>
                            <li><a href="#">Register</a></li>
                            <li><a href="#">Shopping</a></li>
-                           <li><a href="#">Widget</a></li>
                         </ul>
                      </div>
                   </div>
@@ -49,7 +43,7 @@
                      <div class="widget_menu">
                         <h3>Newsletter</h3>
                         <div class="information_f">
-                          <p>Subscribe by our newsletter and get update protidin.</p>
+                          <p>Subscribe to our newsletter and get special discounts</p>
                         </div>
                         <div class="form_sub">
                            <form>

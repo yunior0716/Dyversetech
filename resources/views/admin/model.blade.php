@@ -58,13 +58,13 @@
           	@endif
 
             <div class="div_center">
-              <h2 class="h2_font">Add model</h2>
+              <h2 class="h2_font white">Add model</h2>
           
               <form action="{{url('/add_model')}}" method="POST">
                   @csrf
           
                   <div class="div_design">
-                      <label>Brand :</label>
+                      <label class="white">Brand :</label>
           
                       <select class="text_color" name="brand_id" required="">
                           <option value="" selected="">Select a brand</option>

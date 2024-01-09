@@ -73,7 +73,7 @@ tr:nth-child(even) {
 
 
 
-            <h2 class="font_size">All Messages</h2>
+            <h2 class="font_size h2_font white">All Messages</h2>
 
             <div style="overflow: auto;">
             <table class="center">

@@ -17,6 +17,7 @@
     	{
     		font-size: 40px;
     		padding-bottom: 40px;
+        color: #ffff;
     	}
 
     	.input_color

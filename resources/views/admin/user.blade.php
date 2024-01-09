@@ -73,7 +73,7 @@ tr:nth-child(even) {
 
 
 
-            <h2 class="font_size">All Customers</h2>
+            <h2 class="font_size white">All Customers</h2>
 
             <div style="overflow: auto;">
             <table class="center">

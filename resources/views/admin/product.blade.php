@@ -69,7 +69,7 @@
 
             
 
-              <h1 class="font_size">Add Product</h1>
+              <h1 class="font_size white">Add Product</h1>
 
 
               <form action="{{url('/add_product')}}" method="POST" enctype="multipart/form-data">
@@ -89,7 +89,7 @@
 
             <div class="div_design">
               <label>Operator :</label>
-              <select class="text_color" name="operator_id" required="">
+              <select class="text_color" name="operator_id" >
                   <option value="" selected="">Select an operator</option>
                   @foreach($operators as $operator)
                       <option value="{{$operator->operator_id}}">{{$operator->operator_name}}</option>
@@ -150,7 +150,7 @@
             <div class="div_design">
 
               <label>IMEI :</label>
-              <input class="text_color" type="text" name="imei" placeholder="Write the IMEI"  required="">
+              <input class="text_color" type="text" name="imei" placeholder="Write the IMEI"  >
               
             </div>
 
@@ -176,7 +176,7 @@
             @foreach($characteristics as $characteristic)
             <div class="div_design">
                 <label for="characteristics[{{ $characteristic->characteristics_id }}]">{{ $characteristic->name }}</label>
-                <input type="text" name="characteristics[{{ $characteristic->characteristics_id }}]" id="characteristics[{{ $characteristic->characteristics_id }}]" required>
+                <input type="text" name="characteristics[{{ $characteristic->characteristics_id }}]" id="characteristics[{{ $characteristic->characteristics_id }}]" >
             </div>
             @endforeach
             

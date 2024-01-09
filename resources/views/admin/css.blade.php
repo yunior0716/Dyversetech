@@ -42,5 +42,15 @@ background-color: grey;
  
 }
 
+.white{
+  color: #ffffff;
+}
+
+.div_design, label{
+
+  color: #ffffff;
+
+}
+
     </style>
 

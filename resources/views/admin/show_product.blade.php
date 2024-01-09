@@ -59,7 +59,7 @@
               </div>
               @endif
 
-              <h2 class="font_size">All Products</h2>
+              <h2 class="font_size white">All Products</h2>
 
               <div style="overflow: auto;">
                   <table class="center">
@@ -69,10 +69,10 @@
                           <th class="th_deg">Quantity</th>
                           <th class="th_deg">Catagory</th>
                           <th class="th_deg">Price</th>
-                          <th class="th_deg" style="min-width: 200px">Characteristics</th>
+                          {{-- <th class="th_deg" style="min-width: 200px">Characteristics</th>
                           <th class="th_deg">Operator</th>
-                          <th class="th_deg">IMEI</th>
-                          <th class="th_deg">Condition</th>
+                          <th class="th_deg">IMEI</th> --}}
+                          {{-- <th class="th_deg">Condition</th> --}}
                           <th class="th_deg">Product Image</th>
                           <th class="th_deg">Delete</th>
                           <th class="th_deg">Edit</th>
@@ -85,7 +85,7 @@
                           <td>{{$product->quantity}}</td>
                           <td>{{$product->catagory}}</td>
                           <td>{{$product->price}}</td>
-                          <td>
+                          {{-- <td>
                             <ul style="text-align: left;">
                               @foreach($product->phoneCharacteristics as $phoneCharacteristic)
                                   @if($phoneCharacteristic->characteristic)
@@ -107,11 +107,11 @@
                                   @endif
                               @endforeach
                           </ul>
-                        </td>
+                        </td> --}}
 
-                          <td>{{$product->operator->operator_name}}</td>
-                          <td>{{$product->imei}}</td>
-                          <td>{{$product->condition}}</td>
+                          {{-- <td>{{$product->operator->operator_name}}</td>
+                          <td>{{$product->imei}}</td> --}}
+                          {{-- <td>{{$product->condition}}</td> --}}
                           <td>
                             <img class="img_size" src="{{asset('product/'.$product->image)}}">
                         </td>

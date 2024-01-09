@@ -290,7 +290,10 @@ public function search_product(Request $request)
             $query->where('model_name', 'LIKE', "%$search_text%")->orWhereHas('brand', function ($query) use ($search_text) {
                 $query->where('brand_name', 'LIKE', "%$search_text%");
             });
-        })->paginate(10);
+            
+        })
+        ->orWhere('catagory', 'LIKE', "%$search_text%")
+        ->paginate(10);
     }
 
     return view('home.all_product', compact('product', 'comment', 'reply', 'cart_count', 'filters'));

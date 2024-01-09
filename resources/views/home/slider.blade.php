@@ -6,14 +6,14 @@
             <li class="glide__slide">
               <div class="hero__center">
                 <div class="hero__left">
-                  <span class="">New Inspiration 2020</span>
-                  <h1 class="">PHONES MADE FOR YOU!</h1>
-                  <p>Trending from mobile and headphone style collection</p>
-                  <a href="#"><button class="hero__btn">SHOP NOW</button></a>
+                  <span class="">Are you a gamer?</span>
+                  <h1 class="">Discover Tech Delights</h1>
+                  <p>The newest in the gaming world</p>
+                  <a href="/products"><button class="hero__btn">SHOP NOW</button></a>
                 </div>
                 <div class="hero__right">
                   <div class="hero__img-container">
-                    <img class="banner_01" src="../images/banner_01.png" alt="banner2" />
+                    <img class="banner_01" src="../images/gaming1.png" alt="banner2" />
                   </div>
                 </div>
               </div>
@@ -21,13 +21,13 @@
             <li class="glide__slide">
               <div class="hero__center">
                 <div class="hero__left">
-                  <span>New Inspiration 2020</span>
-                  <h1>PHONES MADE FOR YOU!</h1>
+                  <span>The newest technology</span>
+                  <h1>Phones for you!</h1>
                   <p>Trending from mobile and headphone style collection</p>
-                  <a href="#"><button class="hero__btn">SHOP NOW</button></a>
+                  <a href="/products"><button class="hero__btn">SHOP NOW</button></a>
                 </div>
                 <div class="hero__right">
-                  <img class="banner_02" src="../images/banner_02.png" alt="banner2" />
+                  <img class="banner_02" src="../images/banner_01.png" alt="banner2" />
                 </div>
               </div>
             </li>

@@ -69,7 +69,7 @@
 
             
 
-              <h1 class="font_size">Update Product</h1>
+              <h1 class="font_size ">Update Product</h1>
 
 
               <form action="{{url('/update_product_confirm',$product->id)}}" method="POST" enctype="multipart/form-data">

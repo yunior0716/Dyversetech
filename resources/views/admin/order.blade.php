@@ -68,7 +68,7 @@
         <div class="main-panel">
           <div class="content-wrapper">
 
-            <h1 class="title_deg">All Orders</h1>
+            <h1 class="title_deg white">All Orders</h1>
 
 
             <div class="center">
