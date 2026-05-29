@@ -117,7 +117,11 @@
                         </td>
 
                 <td>
-                  <a class="btn btn-danger" onclick="confirmation(event)" href="{{url('delete_product',$product->id)}}">Detele</a>
+                  <form action="{{url('delete_product',$product->id)}}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete this product?')" class="btn btn-danger">Delete</button>
+                  </form>
                 </td>
 
                 <td>

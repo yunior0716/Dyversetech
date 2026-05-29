@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class FiltersCharacteristics extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'filter_id',
+        'characteristic_id',
+        'min_value',
+        'max_value',
+    ];
 }

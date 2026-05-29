@@ -138,7 +138,10 @@
              @if($order->delivery_status=='processing')
 
                   
-              <a href="{{url('delivered',$order->id)}}" onclick="confirmation(event)" class="btn btn-primary">Delivered</a>
+              <form action="{{url('delivered',$order->id)}}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" onclick="return confirm('Are you sure this product is delivered?')" class="btn btn-primary">Delivered</button>
+              </form>
 
               @else
 

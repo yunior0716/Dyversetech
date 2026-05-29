@@ -1,0 +1,13 @@
+# Prevent execution of PHP scripts in upload directory
+<FilesMatch "\.(?:php|phtml|php3|php4|php5|php7|phps|phar)$">
+    Require all denied
+</FilesMatch>
+
+# Disable script execution
+Options -ExecCGI
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phps .phar
+
+# Only allow image files
+<FilesMatch "\.(?:jpe?g|png|gif|webp)$">
+    Require all granted
+</FilesMatch>

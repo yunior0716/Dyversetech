@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Filters extends Model
 {
 
+    protected $fillable = [
+        'filter_name',
+    ];
 
     public function characteristics()
     {

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'comment_id',
+        'reply',
+        'user_id',
+    ];
 }

@@ -74,11 +74,15 @@
                                                  <span class="new__price">${{$cart->price}}</span>
                                              </div>
 
-                                             <a class="remove__cart-item" onclick="confirmation(event)" href="{{url('/remove_cart',$cart->id)}}">
-                                                 <svg>
-                                                     <use xlink:href="./images/sprite.svg#icon-trash"></use>
-                                                 </svg>
-                                             </a>
+                                             <form action="{{url('/remove_cart',$cart->id)}}" method="POST" style="display:inline;">
+                                                 @csrf
+                                                 @method('DELETE')
+                                                 <button type="submit" class="remove__cart-item" onclick="return confirm('Remove this item from cart?')" style="background:none;border:none;cursor:pointer;">
+                                                     <svg>
+                                                         <use xlink:href="./images/sprite.svg#icon-trash"></use>
+                                                     </svg>
+                                                 </button>
+                                             </form>
                                          </td>
                                      </tr>
 
@@ -114,7 +118,10 @@
                               <h1 style="font-size: 25px; padding-bottom: 5%;">Proceed to Order</h1>
 
                               <div style="padding-bottom: 10%;">
-                              <a  href="{{url('cash_order',$totalproduct)}}" class="">Cash On Delivery</a>
+                              <form action="{{url('cash_order')}}" method="POST" style="display:inline;">
+                                  @csrf
+                                  <button type="submit" class="btn btn-primary">Cash On Delivery</button>
+                              </form>
                               </div>
                   
                               <div>

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Operators extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'operator_id';
+
+    protected $fillable = [
+        'operator_name',
+    ];
 }
