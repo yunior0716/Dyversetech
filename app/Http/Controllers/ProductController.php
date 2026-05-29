@@ -60,7 +60,7 @@ class ProductController extends Controller
         $product->imei = $request->imei;
 
         $image = $request->image;
-        $imagename = time() . '_' . Str::random(8) . '.' . $image->getClientOriginalExtension();
+        $imagename = time() . '_' . Str::random(8) . '.' . $image->guessExtension();
         $request->image->move('product', $imagename);
         $product->image = $imagename;
 
@@ -138,7 +138,7 @@ class ProductController extends Controller
         $image = $request->image;
 
         if ($image) {
-            $imagename = time() . '_' . Str::random(8) . '.' . $image->getClientOriginalExtension();
+            $imagename = time() . '_' . Str::random(8) . '.' . $image->guessExtension();
             $request->image->move('product', $imagename);
             $product->image = $imagename;
         }
