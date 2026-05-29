@@ -91,7 +91,11 @@
 
                 <td>
 
-                  <a onclick="confirmation(event)" class="btn btn-danger" href="{{url('delete_catagory',$data->id)}}">Delete</a>
+                  <form action="{{url('delete_catagory',$data->id)}}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete this category?')" class="btn btn-danger">Delete</button>
+                  </form>
 
                 </td>
 

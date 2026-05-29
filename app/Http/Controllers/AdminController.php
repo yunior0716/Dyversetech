@@ -25,228 +25,92 @@ use Illuminate\Support\Facades\Notification as FacadesNotification;
 
 class AdminController extends Controller
 {
-       public function order()
+    public function order()
     {
-
-
-        if (Auth::id()) {
-
-
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == '1') {
-                $order = order::orderby('id', 'desc')->get();
-
-
-                return view('admin.order', compact('order'));
-            } else {
-                return redirect('login');
-            }
-        } else {
-            return redirect('login');
-        }
+        $order = Order::orderby('id', 'desc')->get();
+        return view('admin.order', compact('order'));
     }
 
 
     public function delivered($id)
     {
+        $order = Order::findOrFail($id);
+        $order->delivery_status = "delivered";
+        $order->payment_status = 'Paid';
+        $order->save();
 
-
-        if (Auth::id()) {
-
-
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == '1') {
-
-
-
-                $order = order::find($id);
-
-                $order->delivery_status = "delivered";
-
-                $order->payment_status = 'Paid';
-
-
-                $order->save();
-
-
-                return redirect()->back();
-            } else {
-                return redirect('login');
-            }
-        } else {
-
-            return redirect('login');
-        }
+        return redirect()->back();
     }
 
     public function print_pdf($id)
     {
-        if (Auth::id()) {
-
-
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == '1') {
-
-                $order = order::find($id);
-
-
-                return view('admin.pdf', compact('order'));
-            } else {
-
-                return redirect('login');
-            }
-        } else {
-
-            return redirect('login');
-        }
+        $order = Order::findOrFail($id);
+        return view('admin.pdf', compact('order'));
     }
 
 
     public function send_email($id)
     {
-
-        if (Auth::id()) {
-
-
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == '1') {
-
-                $order = order::find($id);
-
-                return view('admin.email_info', compact('order'));
-            } else {
-                return redirect('login');
-            }
-        } else {
-            return redirect('login');
-        }
+        $order = Order::findOrFail($id);
+        return view('admin.email_info', compact('order'));
     }
 
 
     public function send_user_email(Request $request, $id)
     {
+        $request->validate([
+            'greeting' => 'required|string|max:255',
+            'firstline' => 'required|string|max:500',
+            'body' => 'required|string|max:2000',
+            'button' => 'required|string|max:100',
+            'url' => 'required|url|max:500',
+            'lastline' => 'required|string|max:500',
+        ]);
 
+        $order = Order::findOrFail($id);
 
-        if (Auth::id()) {
+        $details = [
+            'greeting' => $request->greeting,
+            'firstline' => $request->firstline,
+            'body' => $request->body,
+            'button' => $request->button,
+            'url' => $request->url,
+            'lastline' => $request->lastline,
+        ];
 
+        FacadesNotification::send($order, new SendEmailNotification($details));
 
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == '1') {
-
-                $order = order::find($id);
-
-
-                $details = [
-
-                    'greeting' => $request->greeting,
-
-                    'firstline' => $request->firstline,
-
-                    'body' => $request->body,
-
-                    'button' => $request->button,
-
-                    'url' => $request->url,
-
-                    'lastline' => $request->lastline,
-
-                ];
-
-                FacadesNotification::send($order, new SendEmailNotification($details));
-
-                return redirect()->back()->with('message', "Email is send to the Customer Successfully");
-            } else {
-                return redirect('login');
-            }
-        } else {
-            return redirect('login');
-        }
+        return redirect()->back()->with('message', "Email is send to the Customer Successfully");
     }
 
 
 
     public function searchdata(Request $request)
-
-
     {
+        $request->validate([
+            'search' => 'nullable|string|max:255',
+        ]);
 
+        $searchText = $request->search;
 
-        if (Auth::id()) {
+        $order = Order::where('name', 'LIKE', "%$searchText%")
+            ->orWhere('phone', 'LIKE', "%$searchText%")
+            ->orWhere('product_title', 'LIKE', "%$searchText%")
+            ->orWhere('email', 'LIKE', "%$searchText%")
+            ->get();
 
-
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == '1') {
-
-                $searchText = $request->search;
-
-                $order = order::where('name', 'LIKE', "%$searchText%")->orWhere('phone', 'LIKE', "%$searchText%")->orWhere('product_title', 'LIKE', "%$searchText%")->orWhere('email', 'LIKE', "%$searchText%")->get();
-
-
-                return view('admin.order', compact('order'));
-            } else {
-                return redirect('login');
-            }
-        } else {
-            return redirect('login');
-        }
+        return view('admin.order', compact('order'));
     }
 
     public function message()
     {
-
-
-        if (Auth::id()) {
-
-
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == '1') {
-
-                $message = contact::orderby('id', 'desc')->get();
-
-                return view('admin.message', compact('message'));
-            } else {
-                return redirect('login');
-            }
-        } else {
-            return redirect('login');
-        }
+        $message = Contact::orderby('id', 'desc')->get();
+        return view('admin.message', compact('message'));
     }
 
     public function customer()
     {
-
-        if (Auth::id()) {
-
-
-            $usertype = Auth::user()->usertype;
-
-            if ($usertype == '1') {
-
-                $user = user::where('usertype', '=', '0')->get();
-
-                return view('admin.user', compact('user'));
-            } else {
-                return redirect('login');
-            }
-        } else {
-            return redirect('login');
-        }
+        $user = User::where('usertype', '=', '0')->get();
+        return view('admin.user', compact('user'));
     }
-
-
-    
-
-
-
-
-
-
-
 }

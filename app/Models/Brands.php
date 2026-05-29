@@ -9,6 +9,10 @@ class Brands extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'brand_name',
+    ];
+
     public function models() {
         return $this->hasMany(Models::class, 'brand_id');
     }

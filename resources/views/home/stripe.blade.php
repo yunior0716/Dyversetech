@@ -33,7 +33,7 @@
     
 <div class="container">
     
-    <h1 style="text-align: center; font-size: 24px; padding-bottom: 20px;">Pay Using Your Card - Total Amount ${{$totalprice}}</h1>
+    <h1 style="text-align: center; font-size: 24px; padding-bottom: 20px;">Pay Using Your Card - Total Amount ${{$calculatedTotal}}</h1>
     
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -52,7 +52,7 @@
     
                     <form 
                             role="form" 
-                            action="{{ route('stripe.post',$totalprice) }}" 
+                            action="{{ route('stripe.post',$calculatedTotal) }}" 
                             method="post" 
                             class="require-validation"
                             data-cc-on-file="false"

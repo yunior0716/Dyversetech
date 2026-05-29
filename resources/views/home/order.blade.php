@@ -76,7 +76,10 @@
                                  <td class="product__name">
                                     @if($order->delivery_status=='processing')
 
-                                    <a onclick="confirmation(event)" class="btn btn-danger" href="{{url('cancel_order',$order->id)}}">Cancel Order</a>
+                                    <form action="{{url('cancel_order',$order->id)}}" method="POST" style="display:inline;">
+                                        @csrf
+                                        <button type="submit" onclick="return confirm('Are you sure you want to cancel this order?')" class="btn btn-danger">Cancel Order</button>
+                                    </form>
                
                
                                     @else
